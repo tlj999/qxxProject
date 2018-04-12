@@ -493,3 +493,15 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     display: block;
     width: 70px
 }
+.gray-bg{background-color:#f3f3f4}
+body{
+    padding: 20px;
+}
+
+     /*首页-开始*/
+.userTable{
+    background: #fff;
+    border-radius: 5px;
+    padding: 30px;
+}
+/*首页结束*/
