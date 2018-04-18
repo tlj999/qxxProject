@@ -12,103 +12,119 @@
     <!--360浏览器优先以webkit内核解析-->
 
 
-    <title>首页</title>
+    <title>客户列表</title>
 
     <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
     <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
 
     <link rel="stylesheet" href="css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="js/plugins/layer/skin/layer.css">
     <link href="css/style.min.css" rel="stylesheet">
 
 </head>
 
 <body class="gray-bg">
 
-<div class="userTable">
-    <table id="userTable"></table>
-</div>
+    <div class="userTable">
+        <table id="userTable"></table>
+    </div>
+    <div class="userDetailPop">
+        <div class="form-group">
+            <label>客户名称：</label>
+            <input type="text" value="李莉" disabled/>
+        </div>
+    </div>
 
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap.min.js?v=3.3.6"></script>
-<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="js/main.js"></script>
-<script>
-    $(function () {
-        // init();
-        var oTable = new TableInit();
-        oTable.Init($("#userTable"),'crm/10010/500',columns);
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $(function () {
+            // init();
+            var oTable = new TableInit();
+            oTable.Init($("#userTable"), 'crm/10010/500', columns);
 
-    })
-    var columns = [
-        {
-            field: 'cusId',
-            title: '客户ID',
-        },
-        {
-            field: 'cusName',
-            title: '客户姓名',
+        })
+        var columns = [
+            {
+                field: 'cusId',
+                title: '客户ID',
+            },
+            {
+                field: 'cusName',
+                title: '客户姓名',
 
-        },
-        {
-            field: 'cusSourceStr',
-            title: '客户来源',
+            },
+            {
+                field: 'cusSourceStr',
+                title: '客户来源',
 
-        },
-        {
-            field: 'cusMobile',
-            title: '客户办公电话',
+            },
+            {
+                field: 'cusMobile',
+                title: '客户办公电话',
 
-        },
-        {
-            field: 'cusEmail',
-            title: '客户邮箱',
+            },
+            {
+                field: 'cusEmail',
+                title: '客户邮箱',
 
-        },
-        {
-            field: 'cusLevel',
-            title: '客户级别',
+            },
+            {
+                field: 'cusLevel',
+                title: '客户级别',
 
-        }];
+            },
+            {
+                field: 'operate',
+                title: '操作',
+                formatter: 'actionFormatter',
+                events:'actionEvents',
+            }];
 
 
-    function actionFormatter(value, row, index) {
-        return '<button data-openid="' + row.openid + '" class="view">查看</button>';
-    }
-    //表格  - 操作 - 事件
-    window.actionEvents = {
-        'click .view': function (e, value, row, index) {
-
-            getDetail($(this).attr('data-openid'))
-            layer.open({
-                type: 1,
-                title: '用户消费详情',
-                shadeClose: true,
-                content: $(".userpayDetail"),
-                area: ['600px', '380px'],
-            })
-        },
-    }
-
-    function init() {
-        var url = 'crm/10010/500';
-        var data = {
-            pageNum: 1,
-            pageSize: 5
+        function actionFormatter(value, row, index) {
+            return '<a class="detail"><i class="fa fa-list-ul" title="详情"></i></a><a class="delete"><i class="fa fa-trash" title="删除"></i></a>';
         }
-        var doSuccess = function (res) {
+        //表格  - 操作 - 事件
+        window.actionEvents = {
+            'click .detail': function (e, value, row, index){
+                console.log(row);
+                var url='/crm/10010/400'
+                var data={cusId:row.cusId}
+                var doSuccess=function(res){
+                    layer.open({
+                        type: 1,
+                        title: '用户消费详情',
+                        shadeClose: true,
+                        content: $(".userDetailPop"),
+                        area: ['500px', '300px'],
+                    })
+                }
+                ajaxRequest(url,data,doSuccess)
 
-            // var oTable = new TableInit();
-            // oTable.Init(res.result);
+            },
+            'click .delete': function (e, value, row, index) {
+                var url='/crm/10010/300'
+                var data={cusId:row.cusId}
+                var doSuccess=function(res){
+                    layer.msg('删除成功',{icon:1})
+                    $("#userTable").bootstrapTable('refresh');
+                }
+                layer.confirm('确定要删除吗?', { icon: 3, title: '提示' }, function (index) {
+                    layer.close(index)
+                    ajaxRequest(url,data,doSuccess)
+                })
 
-
+            },
         }
-        // $.post(url, data, function (res) {
-        //     consoele.log(res)
-        // })
-        ajaxRequest(url, data, doSuccess)
-    }
-</script>
+
+
+        
+    </script>
 </body>
 
 
