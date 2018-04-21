@@ -9,7 +9,8 @@ function ajaxRequest(url, data, doSuccess) {//sign图片上传
     contentType: 'application/json; charset=utf-8',
 
     error: function (res) {
-      console.error(res)
+        console.error(res)
+        layer.msg('请求失败',{icon:2})
     },
     success: function (res) {
       console.log(res)
@@ -75,8 +76,16 @@ var TableInit = function () {
     return oTableInit;
 };
 
-function enumType(type,doSuccess) {
+function enumType(ele,type) {
     var url='crm/50010/100'
     var data={enumType:type}
+    var doSuccess=function(res){
+        var level = res.data;
+        var str = ''
+        level.map(function (i) {
+            str += '<option value=' + i.enumValue + '>' + i.enumTxt + '</option>'
+        })
+        ele.html(str)
+    }
     ajaxRequest(url,data,doSuccess)
 }

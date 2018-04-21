@@ -39,67 +39,99 @@ textarea:disabled, input:not([type]):disabled, input[type="color" i]:disabled, i
     background-color: #fff;
     border: none;
 }
-button{
+
+button {
     border: 0;
     background-image: none;
 }
+
 a:focus {
     outline: 0
 }
-p{
+
+p {
     margin: 0;
 }
+
 .gray-bg {
     background-color: #f3f3f4
 }
-.white-bg{
+
+.white-bg {
     background: #fff;
 }
-.circleG{
+
+.circleG {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background: #1ab394;
 }
+
 body {
     padding: 20px;
 }
-input  {
+
+input {
     height: 36px;
     border-radius: 3px;
-    border:1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
 }
+
 a .fa {
     cursor: pointer;
     margin-right: 20px;
 }
-select{
-    width: 172px;
+
+select {
+    width: 182px;
     height: 36px;
     border-radius: 3px;
-    border:1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
 }
-textarea{
-    width: 800px;
+
+textarea {
+    width: 700px;
     height: 150px;
+    outline: none;
+    resize: none;
     border-radius: 3px;
-    border:1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
 }
-.createCus .saveCus{
+
+input, select, textarea {
+    padding: 0 5px;
+}
+
+body .save {
     background: #1ab394;
     color: #fff;
     padding: 6px 18px;
     border: 1px solid #1ab394;
     border-radius: 3px;
-    margin-left: 48%;
-    margin-top: 20px;
 }
+body .default{
+    background: none;
+    color: #2f4050;
+    border:1px solid #2f4050;
+    border-radius: 3px;
+    padding: 2px 6px;
+}
+body .cancel {
+    background: #fff;
+    color: #1ab394;
+    padding: 6px 18px;
+    border: 1px solid #1ab394;
+    border-radius: 3px;
+}
+
 /*新建客户-开始*/
-.createCus{
+.createCus {
     border-radius: 5px;
     padding-bottom: 20px;
 }
-.cusTit{
+
+.cusTit {
     margin: 0 20px;
     margin-bottom: 20px;
     padding: 15px 0;
@@ -107,23 +139,37 @@ textarea{
     align-items: center;
     border-bottom: 1px solid #e5e6e7;
 }
-.cusTit p{
+
+.createCus .saveCus {
+    margin-left: 48%;
+    margin-top: 20px;
+}
+
+.cusTit p {
     margin-left: 20px;
     font-size: 20px;
 }
-.form-inline{
+
+.form-inline {
     margin-bottom: 15px;
 }
-.form-group label{
+
+.createCus .form-group label {
+
+    margin-left: 100px;
+}
+
+.form-group label {
     display: inline-block;
     width: 70px;
     text-align: justify;
-    margin-left: 100px;
     margin-top: 8px;
 }
-.createCus textarea{
+
+.createCus textarea {
     margin-left: 3px;
 }
+
 /*新建客户结束*/
 /*客户列表-开始*/
 .userTable {
@@ -140,11 +186,96 @@ textarea{
     color: #f00;
 }
 
-.userDetailPop {
-    display: none;
-    padding: 30px;
+.queryMode {
+    display: flex;
+    justify-content: space-between;
 }
-.form-group{
+
+.userDetailPop, .filterPop {
+    display: none;
+    padding: 15px 20px;
+}
+
+.userDetailPop input {
+    width: 150px;
+}
+
+.userDetailPop .form-inline {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userDetailPop textarea {
+    width: 350px;
+    height: 80px;
+    padding: 10px 5px;
+    margin-left: 4px;
+}
+
+.queryMode span {
+    margin-left: 20px;
+}
+
+.form-group {
     display: flex;
 }
+
+.userDetailPop .desc {
+    margin-left: 28px;
+}
+
+body .demo-class .layui-layer-btn0 {
+    background: #1ab394;
+}
+.demo-class .layui-layer-btn{
+    text-align: center;
+}
+
+.editCus {
+    cursor: pointer;
+    float: right;
+    margin-right: 50px;
+    color: #1ab394;
+}
+.filterPop div{
+    margin-top: 20px;
+}
+.filterPop .electBtn{
+    background: #2A2E36;
+    color: #fff;
+}
+.filterPop button{
+    margin-left: 10px;
+}
+.cusLevel button{
+    width: 40px;
+}
+.userDetailPop .btnDiv {
+    display: none;
+    text-align: center;
+}
+.queryLeft{
+    display: flex;
+    align-items: center;
+}
+.clearParam{
+    color: #aaa;
+    margin-left: 10px;
+}
+.filterParam{
+    display: none;
+}
+.userDetailPop select {
+    width: 150px;
+    display: none;
+}
+
+.btnDiv button {
+    padding: 4px 15px;
+}
+
+.btnDiv .saveBtn {
+    margin-right: 30px;
+}
+
 /*客户列表-结束*/
