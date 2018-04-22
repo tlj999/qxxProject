@@ -67,7 +67,12 @@ p {
     border-radius: 50%;
     background: #1ab394;
 }
-
+.circleB {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #337ab7;
+}
 body {
     padding: 20px;
 }
@@ -126,7 +131,7 @@ body .cancel {
 }
 
 /*新建客户-开始*/
-.createCus {
+.createCus ,.createContact{
     border-radius: 5px;
     padding-bottom: 20px;
 }
@@ -140,7 +145,7 @@ body .cancel {
     border-bottom: 1px solid #e5e6e7;
 }
 
-.createCus .saveCus {
+.createCus .saveCus ,.createContact .saveCus{
     margin-left: 48%;
     margin-top: 20px;
 }
@@ -162,7 +167,7 @@ body .cancel {
 .form-group label {
     display: inline-block;
     width: 70px;
-    text-align: justify;
+    text-align: right;
     margin-top: 8px;
 }
 
@@ -191,16 +196,16 @@ body .cancel {
     justify-content: space-between;
 }
 
-.userDetailPop, .filterPop {
+.userDetailPop, .filterPop ,.contactPop{
     display: none;
     padding: 15px 20px;
 }
 
-.userDetailPop input {
+.userDetailPop input,.contactPop input {
     width: 150px;
 }
 
-.userDetailPop .form-inline {
+.userDetailPop .form-inline,.contactPop .form-inline {
     display: flex;
     justify-content: space-around;
 }
@@ -230,7 +235,9 @@ body .demo-class .layui-layer-btn0 {
 .demo-class .layui-layer-btn{
     text-align: center;
 }
-
+.contactPop label{
+    width: 90px;
+}
 .editCus {
     cursor: pointer;
     float: right;
@@ -254,6 +261,10 @@ body .demo-class .layui-layer-btn0 {
     display: none;
     text-align: center;
 }
+.contactPop .btnDiv{
+    margin-top: 40px;
+    text-align: center;
+}
 .queryLeft{
     display: flex;
     align-items: center;
@@ -269,7 +280,9 @@ body .demo-class .layui-layer-btn0 {
     width: 150px;
     display: none;
 }
-
+.contactPop select{
+    width: 150px;
+}
 .btnDiv button {
     padding: 4px 15px;
 }
@@ -277,5 +290,20 @@ body .demo-class .layui-layer-btn0 {
 .btnDiv .saveBtn {
     margin-right: 30px;
 }
-
+.contactList .queryRight label{
+    width: 90px;
+}
+.visitList input,.visitList select{
+    width: 140px;
+    margin-right: 10px;
+}
 /*客户列表-结束*/
+/*新建联系人-开始*/
+.createContact label{
+    margin-left: 120px;
+    width:90px;
+}
+.createContact .saveCus{
+    margin-top: 120px;
+}
+/*新建联系人结束*/

@@ -186,7 +186,7 @@
                 cancel(cusData)
                 layer.open({
                     type: 1,
-                    title: '用户消费详情',
+                    title: '客户详情',
                     shadeClose: true,
                     content: $(".userDetailPop"),
                     area: ['600px', '400px'],
@@ -196,7 +196,7 @@
 
         },
         'click .delete': function (e, value, row, index) {
-            var url = '/crm/10010/300'
+            var url = 'crm/10010/300'
             var data = {cusId: row.cusId}
             var doSuccess = function (res) {
                 layer.msg('删除成功', {icon: 1})

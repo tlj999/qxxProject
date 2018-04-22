@@ -1,10 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>新增来访记录</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" href="js/plugins/layer/skin/layer.css">
+    <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="white-bg createCus">
+    <header class="cusTit">
+        <div class="circleG"></div>
+        <p>新增来访记录</p>
+    </header>
+
+    <div class="form-inline">
+        <div class="form-group">
+            <label>客户ID：</label>
+            <input type="text" id="cusID" name="cusName"/>
+        </div>
+        <div class="form-group">
+            <label>来访地址：</label>
+            <input type="text" id="cusAddr" name="cusName"/>
+        </div>
+
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <label>开始时间：</label>
+            <input id="visitStart" class="layer-date" type="text">
+        </div>
+        <div class="form-group">
+            <label>结束时间：</label>
+            <input id="visitEnd" type="text">
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <label>来访内容：</label>
+            <input type="text" id="cusContent" name="cusName"/>
+        </div>
+        <div class="form-group">
+            <label>客户评价：</label>
+            <select name="" id="cusEval"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>来访详情：</label>
+        <textarea name="" id="cusDetail"></textarea>
+    </div>
+    <button class="save saveCus" id="saveCont">保存</button>
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/layer/layer.min.js"></script>
+<script src="js/plugins/layer/laydate/laydate.js"></script>
+<script src="js/main.js"></script>
+<script>
+
+    $(function () {
+        enumType($("#cusEval"), 'CUS_EVALUATION')
+    })
+
+    laydate.render({
+        elem: '#visitStart',
+        type:'datetime',
+        format: 'yyyy-MM-dd HH:mm',
+        done: function(value, date, endDate){
+            laydate.render({
+                elem: '#visitEnd',
+                type:'datetime',
+                min:value,
+                format: 'yyyy-MM-dd HH:mm',
+            })
+        }
+    });
+
+    $("#cusID").change(function () {
+        var url='/crm/10010/400'
+        var data={cusId:$.trim($(this).val())}
+        var doSuccess=function (res) {
+
+        }
+        ajaxRequest(url,data,doSuccess)
+    })
+
+
+    $("#saveCont").click(function () {
+        var url = 'crm/30010/100';
+        var cusId=$.trim($("#cusID").val())
+        var startTime=$("#visitStart").val()
+        var endTime=$("#visitEnd").val()
+        var content=$.trim($("#cusContent").val())
+        var cusDetail=$.trim($("#cusDetail").val())
+        var cusAddr=$.trim($("#cusAddr").val())
+        var data = {
+            cusVisitStartTime:new Date(startTime).getTime(),
+            cusVisitEndTime:new Date(endTime).getTime(),
+            cusVisitAddress:cusAddr,
+            cusVisitContent:content,
+            cusEvaluation:$("#cusEval").val(),
+            cusVisitDetail:cusDetail,
+            cusId:cusId
+        };
+        var dosucess = function (res) {
+            $("#cusID").val('');
+            $("#visitStart").val('')
+            $("#visitEnd").val('')
+            $("#cusContent").val('')
+            $("#cusAddr").val('')
+            $("#cusDetail").val('')
+            layer.msg('添加成功', {icon: 1})
+        }
+        if (!cusId|| !cusAddr||!cusDetail||!content||!startTime||!endTime) {
+            layer.msg('请将信息填写完整！', {icon: 2})
+            return
+        }
+
+
+        ajaxRequest(url, data, dosucess)
+    })
+
+
+
+</script>
 </body>
 </html>

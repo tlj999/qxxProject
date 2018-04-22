@@ -17,7 +17,7 @@ function ajaxRequest(url, data, doSuccess) {//sign图片上传
         if(res.result){
             doSuccess(res)
         }else{
-          layer.msg('网络异常',{icon:2})
+          layer.msg(res.msg,{icon:2})
         }
 
 
