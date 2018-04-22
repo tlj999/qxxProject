@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80c4fe7a-4fee-4a17-bbbc-45948aaacd61" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contactList.html" beforeDir="false" afterPath="$PROJECT_DIR$/contactList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customerList.html" beforeDir="false" afterPath="$PROJECT_DIR$/customerList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/laydate.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/plugins/layer/laydate/laydate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/need/laydate.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/skins/dahong/icon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/skins/dahong/laydate.css" beforeDir="false" />
@@ -15,9 +9,6 @@
       <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/skins/default/laydate.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/skins/molv/icon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/plugins/layer/laydate/skins/molv/laydate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/newContact.html" beforeDir="false" afterPath="$PROJECT_DIR$/newContact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newVisitedCustomer.html" beforeDir="false" afterPath="$PROJECT_DIR$/newVisitedCustomer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visitedList.html" beforeDir="false" afterPath="$PROJECT_DIR$/visitedList.html" afterDir="false" />
     </list>
     <ignored path="AdminEx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,8 +74,8 @@
           <file leaf-file-name="visitedList.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/visitedList.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1929">
-                  <caret line="253" column="36" lean-forward="true" selection-start-line="253" selection-start-column="33" selection-end-line="253" selection-end-column="36" />
+                <state relative-caret-position="323">
+                  <caret line="272" column="9" lean-forward="true" selection-start-line="272" selection-start-column="9" selection-end-line="272" selection-end-column="9" />
                   <folding>
                     <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
                     <element signature="e#3350#4268#0" />
@@ -156,7 +147,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>gray</find>
-      <find>table td</find>
+      <find />
       <find>minima</find>
       <find>客户</find>
       <find>save</find>
@@ -212,7 +203,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="510" />
     <option name="width" value="695" />
     <option name="height" value="788" />
@@ -353,12 +344,12 @@
       <workItem from="1524221908754" duration="6439000" />
       <workItem from="1524236822606" duration="593000" />
       <workItem from="1524278586720" duration="4777000" />
-      <workItem from="1524367037363" duration="23648000" />
+      <workItem from="1524367037363" duration="24142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102857000" />
+    <option name="totallyTimeSpent" value="103351000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -754,8 +745,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/visitedList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1929">
-          <caret line="253" column="36" lean-forward="true" selection-start-line="253" selection-start-column="33" selection-end-line="253" selection-end-column="36" />
+        <state relative-caret-position="323">
+          <caret line="272" column="9" lean-forward="true" selection-start-line="272" selection-start-column="9" selection-end-line="272" selection-end-column="9" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="e#3350#4268#0" />
