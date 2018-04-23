@@ -29,6 +29,7 @@
         <div class="form-group">
             <label>客户性别：</label>
             <select id="cusSex">
+                <option value="F">请选择性别</option>
                 <option value="1">男</option>
                 <option value="0">女</option>
             </select>
@@ -83,10 +84,10 @@
 <script src="js/main.js"></script>
 <script>
     $(function () {
-        var enumtype = [{ele: $("#cusLevel"), type: 'CUS_LEVEL'},
-            {ele: $("#cusSource"), type: 'CUS_SOURCE'}]
+        var enumtype = [{ele: $("#cusLevel"), type: 'CUS_LEVEL',text:'级别'},
+            {ele: $("#cusSource"), type: 'CUS_SOURCE',text:'来源'}]
         enumtype.map(function (value) {
-            enumType(value.ele, value.type)
+            enumType(value.ele, value.type,value.text)
         })
 
 
@@ -124,11 +125,28 @@
             $('#cusEmail').val('')
             layer.msg('添加成功', {icon: 1})
         }
+        console.log( $('#cusSex').val())
         if (!cusname || !cusAddr || !cusDesc) {
             layer.msg('请将信息填写完整！', {icon: 2})
             return
         }
 
+        if($("#cusSex").val()=='F'){
+
+            layer.msg('请选择性别',{icon:2})
+            return
+
+        }
+        if($("#cusSource").val()=='F'){
+            layer.msg('请选择客户来源',{icon:2})
+            return
+
+        }
+        if($("#cusLevel").val()=='F'){
+            layer.msg('请选择客户级别',{icon:2})
+            return
+
+        }
         if (!regMob.test(cusmobile)) {
             layer.msg('办公电话格式不正确', {icon: 2})
             return;

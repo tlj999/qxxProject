@@ -67,7 +67,7 @@
 <script>
 
     $(function () {
-        enumType($("#cusEval"), 'CUS_EVALUATION')
+        enumType($("#cusEval"), 'CUS_EVALUATION','评论')
     })
 
     laydate.render({
@@ -124,7 +124,11 @@
             layer.msg('请将信息填写完整！', {icon: 2})
             return
         }
+        if($("#cusEval").val()=='F'){
+            layer.msg('请选择客户评价',{icon:2})
+            return;
 
+        }
 
         ajaxRequest(url, data, dosucess)
     })

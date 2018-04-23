@@ -38,6 +38,7 @@
         <div class="form-group">
             <label>联系人性别：</label>
             <select id="contSex">
+                <option value="F">请选择性别</option>
                 <option value="1">男</option>
                 <option value="0">女</option>
             </select>
@@ -114,6 +115,11 @@
         if (!regMob.test(contmobile)) {
             layer.msg('办公电话格式不正确', {icon: 2})
             return;
+        }
+        if($("#cusSex").val()=='F'){
+            layer.msg('请选择性别',{icon:2})
+            return;
+
         }
         if (!regTel.test(contTel)) {
             layer.msg('手机号格式不正确', {icon: 2})

@@ -104,7 +104,7 @@
         // init();
         var oTable = new TableInit();
         oTable.Init($("#visitorTable"), 'crm/30010/400', columns);
-        enumType($(".cusEval"), 'CUS_EVALUATION')
+        enumType($(".cusEval"), 'CUS_EVALUATION','评价')
 
     })
     var cusData;
@@ -213,14 +213,16 @@
 
     $(".searchBtn").click(function () {
         var url='crm/30010/400'
-        var data={cusEvaluation:$(".cusEval").val()}
+        var data={}
         var dosuccess=function (res) {
             $("#visitorTable").bootstrapTable('load',{total:res.data.total,data:res.data.list})
         }
         var cusId=$.trim($(".cusId").val());
         var cusName=$.trim($(".cusName").val());
         var visitTime=$("#visitTime").val();
-
+        if(!cusId&&!cusName&&!visitTime&&$(".cusEval").val()=='F'){
+            layer.msg('请至少填写一个查询参数',{icon:2})
+        }
         if(cusId){
             data['cusId']=cusId
         }
@@ -229,6 +231,9 @@
         }
         if(visitTime){
             data['queryCusVisitTime']=new Date(visitTime).getTime()
+        }
+        if($(".cusEval").val()!='F'){
+            data['cusEvaluation']=$(".cusEval").val()
         }
         ajaxRequest(url,data,dosuccess)
     })
@@ -271,8 +276,11 @@
             layer.msg('请将信息填写完整！', {icon: 2})
             return
         }
+        if($("#cusEval").val()==='F'){
+            layer.msg('请选择客户评价',{icon:2})
+            return;
 
-
+        }
         ajaxRequest(url, data, dosucess)
     })
 
@@ -282,7 +290,7 @@
         })
         $(".userDetailPop textarea").removeAttr('disabled')
         $(".select").hide();
-        enumType($("#cusEval"), 'CUS_EVALUATION')
+        enumType($("#cusEval"), 'CUS_EVALUATION','评价')
         $(".userDetailPop select").show()
 
     }

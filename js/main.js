@@ -76,12 +76,12 @@ var TableInit = function () {
     return oTableInit;
 };
 
-function enumType(ele,type) {
+function enumType(ele,type,text) {
     var url='crm/50010/100'
     var data={enumType:type}
     var doSuccess=function(res){
         var level = res.data;
-        var str = ''
+        var str = '<option value="F">请选择'+text+'</option>'
         level.map(function (i) {
             str += '<option value=' + i.enumValue + '>' + i.enumTxt + '</option>'
         })
