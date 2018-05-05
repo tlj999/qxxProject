@@ -17,7 +17,10 @@ function ajaxRequest(url, data, doSuccess) {//sign图片上传
         if(res.result){
             doSuccess(res)
         }else{
-          layer.msg(res.msg,{icon:2})
+          if(res.code[1]==0){
+              layer.msg(res.msg,{icon:2})
+          }
+
         }
 
 
@@ -27,7 +30,7 @@ function ajaxRequest(url, data, doSuccess) {//sign图片上传
 var TableInit = function () {
     var oTableInit = new Object();
     //初始化Table
-    oTableInit.Init = function (ele, url,columns) {
+    oTableInit.Init = function (ele, url,columns,rowAttr) {
         ele.bootstrapTable({
             method: 'post',
             contentType: "application/json",//必须要有！！！！
@@ -52,6 +55,10 @@ var TableInit = function () {
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
             columns: columns,
+            rowAttributes: rowAttr,
+            onEditableSave: function (field, row, oldValue, $el) {
+
+            },
             responseHandler: function (res) {
                 //在ajax获取到数据，渲染表格之前，修改数据源
                 console.log(res)
@@ -88,4 +95,11 @@ function enumType(ele,type,text) {
         ele.html(str)
     }
     ajaxRequest(url,data,doSuccess)
+}
+function getId() {
+    var arr=[]
+    $("tr.selected").each(function () {
+        arr.push($(this).attr("data-id"))
+    })
+    return arr
 }

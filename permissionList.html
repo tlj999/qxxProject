@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/index_v1.html?v=4.0 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:20 GMT -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>权限列表</title>
+
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="js/plugins/layer/skin/layer.css">
+    <link href="css/style.min.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+<div class="userTable roleList">
+    <button class="save newBtn">新增权限</button>
+
+    <button class="save deleteBtn">批量删除</button>
+
+    <table id="visitorTable"></table>
+</div>
+<div class="contactPop">
+    <div class="form-group">
+        <label>权限名：</label>
+        <input type="text" id="perName" name="perName"/>
+    </div>
+
+    <div class="form-group">
+        <label>权限描述：</label>
+        <textarea name="" id="perDesc"></textarea>
+    </div>
+</div>
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/plugins/layer/layer.min.js"></script>
+<script src="js/plugins/layer/laydate/laydate.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(function () {
+        // init();
+        var oTable = new TableInit();
+        var rowAttr = function (row, index) {
+            return {'data-id': row.permissionId}
+        }
+        oTable.Init($("#visitorTable"), 'crm/90010/400', columns, rowAttr);
+
+    })
+    var cusData;
+    var columns = [
+        {
+            checkbox: true
+        },
+        {
+            field: 'permissionId',
+            title: '权限ID',
+
+        },
+
+        {
+            field: 'permissionName',
+            title: '权限名',
+
+        },
+        {
+            field: 'permissionDescription',
+            title: '权限描述',
+
+        },
+        {
+            field: 'operate',
+            title: '操作',
+            formatter: 'actionFormatter',
+            events: 'actionEvents',
+        }];
+
+    layer.config({
+        skin: 'demo-class'
+    })
+    function actionFormatter(value, row, index) {
+        return '<a class="detail"><i class="fa fa-edit" title="修改"></i></a><a class="delete"><i class="fa fa-trash" title="删除"></i></a>';
+    }
+
+    //表格  - 操作 - 事件
+    window.actionEvents = {
+        'click .detail': function (e, value, row, index) {
+            $("#perName").val(row.permissionName)
+            $("#perDesc").val(row.permissionDescription)
+            layer.open({
+                type: 1,
+                title: '修改权限',
+                shadeClose: true,
+                content: $(".contactPop"),
+                area: ['500px', '350px'],
+                btn:['确定'],
+                yes:function (index,olayer) {
+                    var url='crm/90010/200'
+                    var perName=$.trim($("#perName").val())
+                    var perDesc=$.trim($("#perDesc").val())
+                    var data = {
+                        permissionId:row.permissionId,
+                        permissionName:perName,
+                        permissionDescription:perDesc
+                    };
+                    var dosucess = function (res) {
+                        layer.close(index)
+                        $("#visitorTable").bootstrapTable('refresh')
+                        layer.msg('修改成功', {icon: 1})
+
+                    }
+
+                    if (!perName || !perDesc) {
+                        layer.msg('请将信息填写完整！', {icon: 2})
+                        return
+                    }
+
+
+                    console.log(data)
+                    ajaxRequest(url, data, dosucess)
+                }
+            })
+
+        },
+        'click .delete': function (e, value, row, index) {
+            var url = 'crm/90010/300'
+            var data = [row.permissionId]
+            var doSuccess = function (res) {
+                layer.msg('删除成功', {icon: 1})
+                $("#visitorTable").bootstrapTable('refresh');
+            }
+            console.log(data)
+            layer.confirm('确定要删除吗?', {icon: 3, title: '提示'}, function (index) {
+                layer.close(index)
+                ajaxRequest(url, data, doSuccess)
+            })
+        },
+    }
+
+
+    $(".newBtn").click(function () {
+        layer.open({
+            type: 1,
+            title: '新增权限',
+            shadeClose: true,
+            content: $(".contactPop"),
+            area: ['500px', '350px'],
+            btn:['确定'],
+            yes:function (index,olayer) {
+                var url='crm/90010/100'
+                var perName=$.trim($("#perName").val())
+                var perDesc=$.trim($("#perDesc").val())
+                var data = {
+                    permissionName:perName,
+                    permissionDescription:perDesc
+                };
+                var dosucess = function (res) {
+                    layer.close(index)
+                    $("#visitorTable").bootstrapTable('refresh')
+                    layer.msg('添加成功', {icon: 1})
+
+                }
+
+                if (!perName || !perDesc) {
+                    layer.msg('请将信息填写完整！', {icon: 2})
+                    return
+                }
+
+
+                ajaxRequest(url, data, dosucess)
+            }
+        })
+    })
+    $(".deleteBtn").click(function () {
+        var url='crm/90010/300'
+        var data=getId();
+        var doSuccess=function (res) {
+            layer.msg('删除成功', {icon: 1})
+            $("#visitorTable").bootstrapTable('refresh');
+        }
+        if($("tr.selected").length==0){
+            layer.msg('请选择需要删除的角色',{icon:2})
+            return;
+        }
+        layer.confirm('确定要删除吗?', {icon: 3, title: '提示'}, function (index) {
+            layer.close(index)
+            ajaxRequest(url, data, doSuccess)
+        })
+    })
+
+
+</script>
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/index_v1.html?v=4.0 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:20 GMT -->
+
+</html>

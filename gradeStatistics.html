@@ -3,8 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
+    <div class="chartContent">
+        <div class="chart">
+            <div id="levelChart" style="width: 100%;height: 300px;"></div>
+        </div>
+        <div class="chart">
+            <div id="sourceChart" style="width: 100%;height: 300px;"></div>
+        </div>
+        <div class="chart">
+            <div id="evalChart" style="width: 100%;height: 300px;"></div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
 
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('levelChart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '客户级别统计'
+            },
+            tooltip: {},
+            legend: {
+                data:['数量']
+            },
+            xAxis: {
+                data: ["A","B","C","D"]
+            },
+            yAxis: {},
+            series: [{
+                name: '人数',
+                type: 'bar',
+                data: [5, 20, 32, 10]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        var myChart2 = echarts.init(document.getElementById('sourceChart'));
+
+        var option2 = {
+            title : {
+                text: '客户来源统计',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['boss直聘','拉钩网','猎聘网']
+            },
+            series : [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:35, name:'boss直聘'},
+                        {value:10, name:'拉钩网'},
+                        {value:24, name:'猎聘网'},
+
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart2.setOption(option2);
+        var myChart3 = echarts.init(document.getElementById('evalChart'));
+
+        var option3 = {
+            title: {
+                text: '客户评价统计'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['差评', '一般', '不错', '很好','非常好']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [1, 17, 20, 34, 25],
+                type: 'line'
+            }]
+        };
+        myChart3.setOption(option3);
+    </script>
 </body>
 </html>
