@@ -306,7 +306,7 @@ header h3{
 }
 .userInfo{
     width: 62%;
-    padding: 20px;
+    padding: 50px 30px;
     border-radius: 3px;
     background: #fff;
 }
@@ -490,7 +490,7 @@ body .demo-class .layui-layer-btn0 {
 
 .userdetail span{
     display:inline-block;
-    width: 100px;
+
 }
 
 .userdetail .form-inline label{
